@@ -1,0 +1,62 @@
+\documentclass{amsart}
+\usepackage[slovak]{babel}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\usepackage{color}
+\input{pygments}
+\begin{document}
+\title{Skúšobné zadanie na druhé cvičenie}
+\maketitle
+\section{Odovzdávanie}
+\begin{itemize}
+\item Cez github. 
+\item {\color{red}\bf\large Repozitár musí byť privátny (!!!)}
+\item Pozvite užívateľa {\tt gjenca} do repozitára.
+\end{itemize}
+
+\section{Vypočítajte hodnotu}
+
+Napíšte funkciu {\tt myevald(f,d)}, ktorá dostane ako parameter
+funkciu {\tt f} v prefixovej reprezentácii a slovník {\tt d},
+ktorý zobrazuje všetky premenné použité v {\tt f} na čísla. Ako návratovú
+hodnotu vráti hodnotu funkcie {\tt f}.
+\begin{framed}
+\input{myevald.example.py}
+\end{framed}
+\subsection{Vrátiť, nie vypisovať}
+
+Hodnotu má funkcia vrátiť, nie vypisovať. Vypisovať nemá nič.
+\section{Pomôcky atď.}
+
+Funkcia {\tt myevald} bude rekurzívna. Základné prípady sú, keď je {\tt f} číslo alebo
+reťazec. Medziným musí teda vaša funkcia zistiť typ parametra {\tt f} a na základe toho sa
+rozhodnúť, čo robiť.
+
+\section{Zjednodušte (7 bodov)}
+Keďže myderive vracia dosť zbytočne zložité funkcie, pre rozumnú použiteľnosť treba
+výsledok zjednodušiť. Napíšte funkciu {\tt mysimplify(f)}, ktorá dostane funkciu v prefixovej
+reprezentácii a vráti tiež funkciu v prefixovej reprezentácii, ale jednoduchšiu.
+
+Implementujte pritom tieto transformácie.
+\begin{itemize}
+\item $x+0,0+x\mapsto x$
+\item $x.1,1.x\mapsto x$
+\item $x.0,0.x\mapsto 0$
+\item $x/1\mapsto x$
+\item výraz bez premenných (ergo konštanta) $\mapsto$ jeho hodnota.
+\end{itemize}
+Posledný bod v našich podmienkach sa najlepšie vyrieši cez volanie 
+{\tt myeval(f,\{\})}.
+
+\begin{framed}
+\include{mysimplify.example.py}
+\end{framed}
+
+\section{Pomôcky atď.}
+\begin{itemize}
+\item
+Uvedomte si, že funkcia bude opäť rekurzívna; najprv sa zjednodušia podvýrazy a
+až na zjednodušené podvýrazy sa aplikujú pravidlá o ,,lokálnom zjednodušovaní''.
+\item Poriadne si rozmyslite, čo hovorí predošlý bod skôr ako začnete kódovať.
+\end{itemize}
+\end{document}

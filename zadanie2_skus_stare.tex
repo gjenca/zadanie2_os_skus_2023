@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\usepackage{color}
+\input{pygments}
+\begin{document}
+\title{Skúšobné zadanie na druhé cvičenie}
+\maketitle
+\section{Príprava}
+Vaše riešenie bude mať súbor s menom {\tt vase\_priezvisko.py}. Bude obsahovať
+iba definície funkcií. Nechajte v ňom aj funkciu {\tt myeval} z domácej prípravy
+(ak ju máte).
+
+Zrejme budete potrebovať vaše riešenie skúšať. V Pythone sa to robí tak, že na koniec vášho
+modulu dáte konštrukciu tohto typu
+\begin{framed}
+\include{name.main.py}
+\end{framed}
+
+Tým dosiahnete, že váš modul bude po spustení na príkazovom riadku vypisovať testovacie výpisy.
+Zároveň keď ho ja budem importovať v testoch, nebudú mi tam strašiť vaše testovacie výpisy.
+
+
+\section{Derivujte (8 bodov)}
+
+Napíšte funkciu, {\tt myderive(f,var)}, ktorá vráti prefixovú reprezentáciu parciálnej
+derivácie funkcie {\tt f} danej prefixovou reprezentáciou. 
+\begin{framed}
+\include{myderive.example.py}
+\end{framed}
+Samozrejme, implementácia bude opäť rekurzívna. Uvedomte si, že stačí implementovať známe
+pravidlá o derivácii konštanty, premennej a aritmetických operácií nad funkciami. Netrápte
+sa nad tým, že vám vznikajú komplikované funkcie. Tým sa zaoberá ďalšia časť zadania.
+
+Ďalej je dobré si uvedomiť, že napríklad pravidlo o násobení konštantou nemusíte implementovať,
+pretože vyplýva z pravidla o derivácii konštanty a pravidla o derivácii súčinu funkcií.
+
+Skôr ako začnete komplikovane pomocou pomocných premenných 
+konštruovať zoznamy cez
+{\tt extend} a {\tt append},
+si uvedomte, že v Pythone môžete bez problémov
+používať výrazy ako {\tt ['*',{\em niečo},{\em niečo\_iné}]} priamo v kóde.
+
+
+\section{Zjednodušte (7 bodov)}
+Keďže myderive vracia dosť zbytočne zložité funkcie, pre rozumnú použiteľnosť treba
+výsledok zjednodušiť. Napíšte funkciu {\tt mysimplify(f)}, ktorá dostane funkciu v prefixovej
+reprezentácii a vráti tiež funkciu v prefixovej reprezentácii, ale jednoduchšiu.
+
+Implementujte pritom tieto transformácie.
+\begin{itemize}
+\item $x+0,0+x\mapsto x$
+\item $x.1,1.x\mapsto x$
+\item $x.0,0.x\mapsto 0$
+\item $x/1\mapsto x$
+\item výraz bez premenných (ergo konštanta) $\mapsto$ jeho hodnota.
+\end{itemize}
+Posledný bod v našich podmienkach sa najlepšie vyrieši cez volanie 
+{\tt myeval(f,\{\})}.
+
+Uvedomte si, že funkcia bude opäť rekurzívna; najprv sa zjednodušia podvýrazy a
+až na zjednodušené podvýrazy sa aplikujú pravidlá o ,,lokálnom zjednodušovaní''.
+
+\begin{framed}
+\include{mysimplify.example.py}
+\end{framed}
+\section{Odovzdávanie}
+Cez bitbucket.
+\end{document}
